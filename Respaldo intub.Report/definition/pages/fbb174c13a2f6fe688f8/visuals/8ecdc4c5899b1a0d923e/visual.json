@@ -712,6 +712,184 @@
                   "Value": "'Center'"
                 }
               }
+            },
+            "backColor": {
+              "expr": {
+                "Conditional": {
+                  "Cases": [
+                    {
+                      "Condition": {
+                        "Comparison": {
+                          "ComparisonKind": 0,
+                          "Left": {
+                            "Measure": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Medidas"
+                                }
+                              },
+                              "Property": "Validación Fanea vs Planificacion"
+                            }
+                          },
+                          "Right": {
+                            "Literal": {
+                              "Value": "1D"
+                            }
+                          }
+                        }
+                      },
+                      "Value": {
+                        "Literal": {
+                          "Value": "'#DFF0D8'"
+                        }
+                      }
+                    },
+                    {
+                      "Condition": {
+                        "Comparison": {
+                          "ComparisonKind": 0,
+                          "Left": {
+                            "Measure": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Medidas"
+                                }
+                              },
+                              "Property": "Validación Fanea vs Planificacion"
+                            }
+                          },
+                          "Right": {
+                            "Literal": {
+                              "Value": "2D"
+                            }
+                          }
+                        }
+                      },
+                      "Value": {
+                        "Literal": {
+                          "Value": "'#FFE0B2'"
+                        }
+                      }
+                    },
+                    {
+                      "Condition": {
+                        "Comparison": {
+                          "ComparisonKind": 0,
+                          "Left": {
+                            "Measure": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Medidas"
+                                }
+                              },
+                              "Property": "Validación Fanea vs Planificacion"
+                            }
+                          },
+                          "Right": {
+                            "Literal": {
+                              "Value": "0D"
+                            }
+                          }
+                        }
+                      },
+                      "Value": {
+                        "Literal": {
+                          "Value": "'#FFF3CD'"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "fontColor": {
+              "expr": {
+                "Conditional": {
+                  "Cases": [
+                    {
+                      "Condition": {
+                        "Comparison": {
+                          "ComparisonKind": 0,
+                          "Left": {
+                            "Measure": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Medidas"
+                                }
+                              },
+                              "Property": "Validación Fanea vs Planificacion"
+                            }
+                          },
+                          "Right": {
+                            "Literal": {
+                              "Value": "1D"
+                            }
+                          }
+                        }
+                      },
+                      "Value": {
+                        "Literal": {
+                          "Value": "'#155724'"
+                        }
+                      }
+                    },
+                    {
+                      "Condition": {
+                        "Comparison": {
+                          "ComparisonKind": 0,
+                          "Left": {
+                            "Measure": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Medidas"
+                                }
+                              },
+                              "Property": "Validación Fanea vs Planificacion"
+                            }
+                          },
+                          "Right": {
+                            "Literal": {
+                              "Value": "2D"
+                            }
+                          }
+                        }
+                      },
+                      "Value": {
+                        "Literal": {
+                          "Value": "'#7A2C15'"
+                        }
+                      }
+                    },
+                    {
+                      "Condition": {
+                        "Comparison": {
+                          "ComparisonKind": 0,
+                          "Left": {
+                            "Measure": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Medidas"
+                                }
+                              },
+                              "Property": "Validación Fanea vs Planificacion"
+                            }
+                          },
+                          "Right": {
+                            "Literal": {
+                              "Value": "0D"
+                            }
+                          }
+                        }
+                      },
+                      "Value": {
+                        "Literal": {
+                          "Value": "'#000000'"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
             }
           },
           "selector": {
