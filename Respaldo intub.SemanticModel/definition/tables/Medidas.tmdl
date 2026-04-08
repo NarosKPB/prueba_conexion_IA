@@ -1,0 +1,414 @@
+table Medidas
+	lineageTag: 9b23d865-0bc9-4fcf-a5a5-a3d6c2a12e79
+
+	measure 'Tiempo Promedio Minutos En Faena' =
+			
+			var _minutos_promedio = AVERAGE(Reporte_Faenas[Diferencia Minutos Inicio - Fin Faena])
+			return _minutos_promedio
+		lineageTag: 46997f67-e8dd-4952-a371-b504868c7c23
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tiempo Promedio Horas En Faena' =
+			
+			var _minutos_totales = [Tiempo Promedio Minutos En Faena]
+			var _horas = INT(_minutos_totales / 60)
+			var _minutos = MOD(_minutos_totales, 60)
+			
+			// 4. Une todo forzando el formato de dos dígitos (00)
+			return FORMAT(_horas, "00") & ":" & FORMAT(_minutos, "00")
+		lineageTag: d182fd61-614a-4736-addc-5f94192e9ba3
+
+	measure 'Cantidad de Reportes de Faenas' = DISTINCTCOUNT(Reporte_Faenas[code])
+		formatString: 0
+		lineageTag: ff3f4e36-4b50-451b-b625-910eb680acd6
+
+	measure 'Cantidad Personal en Faena' = DISTINCTCOUNTNOBLANK(Reporte_Faenas[equipo_persona])
+		formatString: 0
+		lineageTag: 1b74c59d-401e-421c-96b2-4392961a39a2
+
+	measure 'Patentes Operativas' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT( Reporte_Faenas[Patente] ),
+			    NOT ISBLANK( Reporte_Faenas[Patente] )
+			)
+		formatString: 0
+		lineageTag: 5a76984b-5b17-4c82-91ed-73610a487da5
+
+	measure 'Tiempo Promedio Min' =
+			
+			AVERAGE( Reporte_Faenas[Diferencia Minutos Inicio - Fin Faena] )
+		lineageTag: 21b01663-a47e-42ce-aee0-470da7febcf2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tiempo Promedio Visual' =
+			
+			VAR _min = [Tiempo Promedio Min]
+			VAR _horas = INT(DIVIDE(_min, 60))
+			VAR _mins = ROUND(MOD(_min, 60), 0)
+			RETURN
+			FORMAT(_horas, "0") & " h " & FORMAT(_mins, "00") & " min"
+		lineageTag: 3b16efc0-8091-47b6-82f2-7eaeb300f1d5
+
+	measure 'Tiempo Total Min' =
+			
+			SUM( Reporte_Faenas[Diferencia Minutos Inicio - Fin Faena] )
+		lineageTag: 604c4807-cc51-4158-a34f-fde3d07ffa61
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tiempo Total' =
+			
+			VAR _min = [Tiempo Total Min]
+			VAR _horas = INT( DIVIDE(_min, 60) )
+			VAR _mins = MOD(_min, 60)
+			RETURN
+			FORMAT(_horas, "00") & ":" & FORMAT(_mins, "00")
+		lineageTag: a61a6fc3-367a-4757-97a0-2d0e5da545ff
+
+	measure 'Cantidad Planificacion' = DISTINCTCOUNT('Planificación'[pk])
+		formatString: 0
+		lineageTag: e328a838-dba3-4eeb-a7a7-b68138416b9f
+
+	measure 'Validación Fanea vs Planificacion' = ```
+			
+			var _faena = [Cantidad de Reportes de Faenas]
+			var _planificado = [Cantidad Planificacion]
+			return 
+			    SWITCH(TRUE(),
+			    ISBLANK(_faena) && ISBLANK(_planificado),BLANK(),
+			    _faena > 0 && _planificado = 1, 1,
+			    _faena > 0 && _planificado = 0, 2,
+			    _faena = _planificado, 1,
+			
+			    0
+			    )
+			```
+		formatString: 0
+		lineageTag: 13d9003e-403e-4db8-a32a-8de1d333b584
+
+	measure 'Porc Cumplimiento Reportes' =
+			
+			var _planificado = [Cantidad Planificacion]
+			var _reportes = [Cantidad de Reportes de Faenas]
+			var _resultado = DIVIDE(_reportes,_planificado,0)
+			return _resultado
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: a817375f-e6f1-480e-ba56-3489cc0929fe
+
+	measure Matriz_Simple_SVG =
+			
+			VAR Plan = [Cantidad Planificacion]
+			VAR Real = [Cantidad de Reportes de Faenas]
+			
+			VAR Plan0 = COALESCE(Plan, 0)
+			VAR Real0 = COALESCE(Real, 0)
+			
+			VAR TieneDatos =
+			    NOT(ISBLANK(Plan) && ISBLANK(Real))
+			
+			VAR Cumplimiento =
+			    IF(
+			        Plan0 > 0,
+			        MIN(DIVIDE(Real0, Plan0, 0), 1),
+			        0
+			    )
+			
+			VAR BarraAncho =
+			    Cumplimiento * 82
+			
+			VAR ColorEstado =
+			    SWITCH(
+			        TRUE(),
+			        Plan0 = Real0, "#22C55E",                -- verde
+			        Real0 > 0 && Real0 < Plan0, "#F59E0B",  -- naranja
+			        "#EF4444"                               -- rojo
+			    )
+			
+			VAR Etiqueta =
+			    "Plan " & FORMAT(Plan0, "0") & "  Rep " & FORMAT(Real0, "0")
+			
+			RETURN
+			IF(
+			    NOT TieneDatos,
+			    BLANK(),
+			    "data:image/svg+xml;utf8," &
+			    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 52' preserveAspectRatio='xMidYMid meet'>
+			
+			        <rect x='3' y='5' width='92' height='34' rx='5'
+			              fill='#FFFFFF'
+			              stroke='#D9D9D9'
+			              stroke-width='1'/>
+			
+			        <circle cx='12' cy='15' r='3.2' fill='" & ColorEstado & "'/>
+			
+			        <text x='19' y='17'
+			              font-family='Segoe UI, Arial, sans-serif'
+			              font-size='10.5'
+			              font-weight='700'
+			              fill='#1F2937'>" & Etiqueta & "</text>
+			
+			        <rect x='12' y='23' width='82' height='5.5' rx='2.7'
+			              fill='#E5E7EB'/>
+			
+			        <rect x='12' y='23' width='" & BarraAncho & "' height='5.5' rx='2.7'
+			              fill='" & ColorEstado & "'/>
+			
+			    </svg>"
+			)
+		lineageTag: 31a9dd75-6c35-4424-9ed3-063c13ab8014
+		dataCategory: ImageUrl
+
+	measure 'Matriz_Simple_SVG 2' =
+			
+			VAR Plan = ROUND([Cantidad Planificacion], 0)
+			VAR Real = ROUND([Cantidad de Reportes de Faenas], 0)
+			
+			VAR Plan0 = COALESCE(Plan, 0)
+			VAR Real0 = COALESCE(Real, 0)
+			
+			VAR TieneDatos =
+			    NOT(ISBLANK(Plan) && ISBLANK(Real))
+			
+			VAR Estado =
+			    SWITCH(
+			        TRUE(),
+			        Plan0 = Real0, "verde",
+			        Plan0 > Real0, "rojo",
+			        Real0 > Plan0, "naranjo",
+			        "gris"
+			    )
+			
+			VAR ColorEstado =
+			    SWITCH(
+			        Estado,
+			        "verde", "#22C55E",
+			        "rojo", "#EF4444",
+			        "naranjo", "#F59E0B",
+			        "#D1D5DB"
+			    )
+			
+			VAR IconoSVG =
+			    SWITCH(
+			        Estado,
+			
+			        /* Verde: check */
+			        "verde",
+			        "<path d='M9 16 L12 19 L18 11'
+			            stroke='#22C55E'
+			            stroke-width='2.2'
+			            stroke-linecap='round'
+			            stroke-linejoin='round'
+			            fill='none'/>",
+			
+			        /* Rojo: cruz */
+			        "rojo",
+			        "<path d='M9 11 L17 19 M17 11 L9 19'
+			            stroke='#EF4444'
+			            stroke-width='2.2'
+			            stroke-linecap='round'
+			            fill='none'/>",
+			
+			        /* Naranjo: signo ! */
+			        "naranjo",
+			        "<line x1='13' y1='10.5' x2='13' y2='16.5'
+			            stroke='#F59E0B'
+			            stroke-width='2.2'
+			            stroke-linecap='round'/>
+			         <circle cx='13' cy='19' r='1.2' fill='#F59E0B'/>",
+			
+			        /* Gris */
+			        "<circle cx='13' cy='15' r='2.5' fill='#D1D5DB'/>"
+			    )
+			
+			VAR ColorBorde = "#D9D9D9"
+			VAR ColorFondo = "#FFFFFF"
+			VAR ColorTextoTitulo = "#6B7280"
+			VAR ColorTextoNumero = "#111827"
+			VAR ColorBarraBase = "#E5E7EB"
+			
+			RETURN
+			IF(
+			    NOT TieneDatos,
+			    BLANK(),
+			    "data:image/svg+xml;utf8," &
+			    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 78' preserveAspectRatio='xMidYMid meet'>
+			
+			        <!-- tarjeta -->
+			        <rect x='3' y='4' width='94' height='50' rx='7'
+			              fill='" & ColorFondo & "'
+			              stroke='" & ColorBorde & "'
+			              stroke-width='1'/>
+			
+			        <!-- icono estado -->
+			        " & IconoSVG & "
+			
+			        <!-- títulos -->
+			        <text x='22' y='17'
+			              font-family='Segoe UI, Arial, sans-serif'
+			              font-size='12'
+			              font-weight='600'
+			              fill='" & ColorTextoTitulo & "'>Plan</text>
+			
+			        <text x='60' y='17'
+			              font-family='Segoe UI, Arial, sans-serif'
+			              font-size='12'
+			              font-weight='600'
+			              fill='" & ColorTextoTitulo & "'>Repo</text>
+			
+			        <!-- números -->
+			        <text x='22' y='33'
+			              font-family='Segoe UI, Arial, sans-serif'
+			              font-size='13.5'
+			              font-weight='700'
+			              fill='" & ColorTextoNumero & "'>" & FORMAT(Plan0, "0") & "</text>
+			
+			        <text x='60' y='33'
+			              font-family='Segoe UI, Arial, sans-serif'
+			              font-size='13.5'
+			              font-weight='700'
+			              fill='" & ColorTextoNumero & "'>" & FORMAT(Real0, "0") & "</text>
+			
+			        <!-- barra base -->
+			        <rect x='12' y='40' width='82' height='6' rx='3'
+			              fill='" & ColorBarraBase & "'/>
+			
+			        <!-- barra estado fija -->
+			        <rect x='12' y='40' width='82' height='6' rx='3'
+			              fill='" & ColorEstado & "'/>
+			
+			    </svg>"
+			)
+		lineageTag: c33b6009-0747-450f-87b1-c000bc55bbab
+		dataCategory: ImageUrl
+
+	measure Parciales =
+			
+			MAX([Cantidad Planificacion] - [Cantidad de Reportes de Faenas], 0)
+		formatString: 0
+		lineageTag: 70123989-6092-4112-a7e5-9e57d30b5166
+
+	measure 'Cantidad Mes Pasado' =
+			
+			CALCULATE(
+			    [Cantidad de Reportes de Faenas],
+			    DATEADD(Dim_Tiempo[Fecha], -1, MONTH)
+			)
+		formatString: 0
+		lineageTag: 715f2ab0-2f60-47de-85f4-a3498986fd37
+
+	measure 'Dif vs Mes Pasado' =
+			
+			[Cantidad de Reportes de Faenas] - [Cantidad Mes Pasado]
+		formatString: 0
+		lineageTag: 4f4fe731-6898-48fa-ba99-7e15cb6df4b9
+
+	measure 'Texto Mes Pasado Tarjeta reporte' =
+			
+			VAR _actual = [Cantidad de Reportes de Faenas]
+			VAR _pasado = [Cantidad Mes Pasado]
+			VAR _dif = _actual - _pasado
+			VAR _flecha_up = UNICHAR(129137)
+			VAR _flecha_down = UNICHAR(129139)
+			VAR _flecha =
+			    SWITCH(
+			        TRUE(),
+			        _dif > 0, _flecha_up,
+			        _dif < 0, _flecha_down,
+			        ""
+			    )
+			VAR _signo =
+			    SWITCH(
+			        TRUE(),
+			        _dif > 0, "+",
+			        _dif < 0, "",
+			        ""
+			    )
+			RETURN
+			    _signo & FORMAT(_dif, "#,##0")
+			    & " "
+			    & _flecha
+		lineageTag: 1e8f1529-5b48-4057-88eb-5a4409cd2aef
+
+	measure 'Color Mes Pasado Tarjeta reporte' =
+			
+			VAR _dif = [Cantidad de Reportes de Faenas] - [Cantidad Mes Pasado]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    _dif > 0, "#16A34A",   -- verde
+			    _dif < 0, "#DC2626",   -- rojo
+			    "#6B7280"              -- gris
+			)
+		lineageTag: b17636c9-7f35-41d4-819e-71224699d418
+
+	measure 'Faenas Planificadas Mes Pasado' =
+			
+			CALCULATE(
+			    [Cantidad Planificacion],
+			    DATEADD(Dim_Tiempo[Fecha], -1, MONTH)
+			)
+		formatString: 0
+		lineageTag: cc194104-255b-4722-a240-da9d0e4d2148
+
+	measure 'Dif Faenas Planificadas vs Mes Pasado' =
+			
+			[Cantidad Planificacion] - [Faenas Planificadas Mes Pasado]
+		formatString: 0
+		lineageTag: 62dc2ac5-938b-4276-b287-9f6101d34811
+
+	measure 'Texto Faenas Planificadas Mes Pasado' =
+			
+			VAR _actual = [Cantidad Planificacion]
+			VAR _pasado = [Faenas Planificadas Mes Pasado]
+			VAR _dif = _actual - _pasado
+			VAR _flecha_up = UNICHAR(129137)
+			VAR _flecha_down = UNICHAR(129139)
+			VAR _flecha =
+			    SWITCH(
+			        TRUE(),
+			        _dif > 0, _flecha_up,
+			        _dif < 0, _flecha_down,
+			        ""
+			    )
+			VAR _signo =
+			    SWITCH(
+			        TRUE(),
+			        _dif > 0, "+",
+			        _dif < 0, "",
+			        ""
+			    )
+			RETURN
+			    _signo & FORMAT(_dif, "#,##0")
+			    & " "
+			    & _flecha
+		lineageTag: cb3e6945-c146-4298-861b-73825a3aa8f6
+
+	measure 'Color Faenas Planificadas Mes Pasado' =
+			
+			VAR _dif = [Cantidad Planificacion] - [Faenas Planificadas Mes Pasado]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    _dif > 0, "#16A34A",
+			    _dif < 0, "#DC2626",
+			    "#6B7280"
+			)
+		lineageTag: 384450ad-394b-4950-82b0-d0f9035c3dbe
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Medidas = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Medidas", Int64.Type}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Medidas"})
+				in
+				    #"Columnas quitadas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

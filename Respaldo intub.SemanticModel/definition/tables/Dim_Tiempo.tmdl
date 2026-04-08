@@ -1,0 +1,316 @@
+table Dim_Tiempo
+	lineageTag: 2cc3b6ce-189c-41a5-8e1e-6bcc140e740c
+
+	column Fecha
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 06c4d8e1-c4b3-4ec3-a779-082803c28566
+		summarizeBy: none
+		sourceColumn: Fecha
+
+		variation Variación
+			isDefault
+			relationship: 5b3ae1e5-77a9-4114-acb7-12d21b5d05af
+			defaultHierarchy: LocalDateTable_39d0ef50-aca7-4484-9923-d986a1992c82.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FechaNum
+		dataType: int64
+		formatString: 0
+		lineageTag: da90669d-b78b-4348-9aba-646db135ee26
+		summarizeBy: sum
+		sourceColumn: FechaNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio
+		dataType: int64
+		formatString: 0
+		lineageTag: e9bc91af-c26b-4cac-a9e9-e845d3bbbb07
+		summarizeBy: sum
+		sourceColumn: Anio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Num
+		dataType: int64
+		formatString: 0
+		lineageTag: 00fbe5b7-8cbc-4760-8ec4-30b3858daf56
+		summarizeBy: sum
+		sourceColumn: Mes_Num
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio_Mes
+		dataType: string
+		lineageTag: b1900b81-dd02-4045-99a3-9d7047cc0b88
+		summarizeBy: none
+		sourceColumn: Anio_Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio_Mes_Abrv
+		dataType: string
+		lineageTag: 647a18b4-fa15-42ce-b2f8-b026c61e7bff
+		summarizeBy: none
+		sourceColumn: Anio_Mes_Abrv
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio_Mes_Num_Abrv
+		dataType: string
+		lineageTag: f1a650d3-ba53-460a-b074-05dc4f74f6e2
+		summarizeBy: none
+		sourceColumn: Anio_Mes_Num_Abrv
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Nombre
+		dataType: string
+		lineageTag: 6cc24d9a-ac87-411f-bb2a-4827b3f327e8
+		summarizeBy: none
+		sourceColumn: Mes_Nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Abrv
+		dataType: string
+		lineageTag: 1b1049b3-419d-475f-9afd-c919309451af
+		summarizeBy: none
+		sourceColumn: Mes_Abrv
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia_Mes_Num
+		dataType: int64
+		formatString: 0
+		lineageTag: 56f2d603-8c0a-45ea-8f82-958e3d865ff9
+		summarizeBy: sum
+		sourceColumn: Dia_Mes_Num
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia_Semana_Num
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ea780fa-5b1f-4f80-bea2-bcfc0e11554c
+		summarizeBy: sum
+		sourceColumn: Dia_Semana_Num
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia_Semana_Nombre
+		dataType: string
+		lineageTag: 1c12f610-b838-41d5-8a26-3129403420d5
+		summarizeBy: none
+		sourceColumn: Dia_Semana_Nombre
+		sortByColumn: Dia_Semana_Num
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia_Semana_Abrv
+		dataType: string
+		lineageTag: 52da1768-9e6d-4e62-a3df-8605f24ebce1
+		summarizeBy: none
+		sourceColumn: Dia_Semana_Abrv
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		dataType: string
+		lineageTag: 47d2ab4b-e04f-4146-8088-736fd83b1402
+		summarizeBy: none
+		sourceColumn: Trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio_Trimestre
+		dataType: string
+		lineageTag: ae49c424-bc53-422d-a984-5aa712e83e11
+		summarizeBy: none
+		sourceColumn: Anio_Trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Semana
+		dataType: int64
+		formatString: 0
+		lineageTag: 4cab8f85-f51a-4c84-add5-d996aaead0fa
+		summarizeBy: sum
+		sourceColumn: Semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio_Sem
+		dataType: string
+		lineageTag: f184798b-0623-45e9-84c4-ee2ccb0ab907
+		summarizeBy: none
+		sourceColumn: Anio_Sem
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio_Semana
+		dataType: int64
+		formatString: 0
+		lineageTag: bc74f41a-7a8e-4c6d-9722-cdc6f4490f24
+		summarizeBy: sum
+		sourceColumn: Anio_Semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio_Semana_Num
+		dataType: int64
+		formatString: 0
+		lineageTag: d541db86-150c-4934-8226-6cbe93689c6d
+		summarizeBy: sum
+		sourceColumn: Anio_Semana_Num
+
+		annotation SummarizationSetBy = Automatic
+
+	column Semana_Incremental
+		dataType: int64
+		formatString: 0
+		lineageTag: 7df5207a-7b9c-4981-b037-c4be01904041
+		summarizeBy: sum
+		sourceColumn: Semana_Incremental
+
+		annotation SummarizationSetBy = Automatic
+
+	column Flag_Habil
+		dataType: int64
+		formatString: 0
+		lineageTag: 80febab9-601d-4337-a9d8-84c8837ca4b1
+		summarizeBy: sum
+		sourceColumn: Flag_Habil
+
+		annotation SummarizationSetBy = Automatic
+
+	column Habiles_Pasados_Mes
+		dataType: int64
+		formatString: 0
+		lineageTag: a306ab18-cec3-458c-95c4-54c1985a32ae
+		summarizeBy: sum
+		sourceColumn: Habiles_Pasados_Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Habiles_Totales_Mes
+		dataType: int64
+		formatString: 0
+		lineageTag: efe99ee0-7155-4211-90ec-6ace7fe40e4b
+		summarizeBy: sum
+		sourceColumn: Habiles_Totales_Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pct_Avance_Mes
+		dataType: double
+		lineageTag: 9a395cce-6a19-46ac-9e28-a84c5873d6ef
+		summarizeBy: sum
+		sourceColumn: Pct_Avance_Mes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Habiles_Pasados_Anio
+		dataType: int64
+		formatString: 0
+		lineageTag: efe232dc-ce5e-40fa-929f-108bfaf8ad0a
+		summarizeBy: sum
+		sourceColumn: Habiles_Pasados_Anio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Habiles_Totales_Anio
+		dataType: int64
+		formatString: 0
+		lineageTag: 5affd85e-daec-4dcf-bdfa-0c88fbbcb938
+		summarizeBy: sum
+		sourceColumn: Habiles_Totales_Anio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pct_Avance_Anio
+		dataType: double
+		lineageTag: 512b347a-7c43-4464-9dce-b90dcc92ed6e
+		summarizeBy: sum
+		sourceColumn: Pct_Avance_Anio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Habil_Incremental
+		dataType: string
+		lineageTag: 14d19caa-7394-47f0-9ca9-13b3547d8353
+		summarizeBy: none
+		sourceColumn: Habil_Incremental
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inicio_Semana = ```
+			
+			VAR _FechaActual = 'Dim_Tiempo'[Fecha]
+			
+			// 1. Calculamos el lunes de la semana
+			VAR _InicioSemana = _FechaActual - WEEKDAY(_FechaActual, 2) + 1
+			
+			// 2. Extraemos el día y le ponemos la primera letra en mayúscula
+			VAR _DiaNombre = FORMAT(_InicioSemana, "dddd") 
+			VAR _DiaMayuscula = UPPER(LEFT(_DiaNombre, 1)) & MID(_DiaNombre, 2, LEN(_DiaNombre))
+			
+			// 3. Extraemos número, mes y año
+			VAR _DiaNumero = FORMAT(_InicioSemana, "d")
+			VAR _MesNombre = FORMAT(_InicioSemana, "mmmm")
+			VAR _Ano = FORMAT(_InicioSemana, "yyyy")
+			
+			// 4. Unimos todo
+			RETURN 
+			_DiaNumero & " de " & _MesNombre & " " & _Ano
+			```
+		lineageTag: c44e9799-993f-4533-bbba-77c6b2fa8ada
+		summarizeBy: none
+		sortByColumn: Semana
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia_Corto_Fecha =
+			
+			SWITCH(
+			    'Dim_Tiempo'[Dia_Semana_Abrv],
+			    "lu.", "Lun",
+			    "ma.", "Mar",
+			    "mi.", "Mié",
+			    "ju.", "Jue",
+			    "vi.", "Vie",
+			    "sá.", "Sáb",
+			    "do.", "Dom",
+			    'Dim_Tiempo'[Dia_Semana_Abrv]
+			)
+			& " " &
+			FORMAT('Dim_Tiempo'[Fecha], "dd")
+		lineageTag: 0d31da30-ad9b-4d4d-8973-eb98bcbac3d5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Tiempo = m
+		mode: import
+		source =
+				let
+				    Origen = Value.NativeQuery(GoogleBigQuery.Database([BillingProject="kpb-general"]){[Name="kpb-general"]}[Data], "SELECT * FROM VistasGenerales.Dim_Tiempo#(lf)WHERE fecha >= '2026-01-01' AND fecha <= CURRENT_DATE", null, [EnableFolding=true])
+				in
+				    Origen
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

@@ -1,0 +1,23 @@
+table Dim_Cliente
+	lineageTag: 25a632b8-6600-460c-a9e4-138a3db42426
+
+	column cliente
+		dataType: string
+		lineageTag: 3896cd48-b4ef-4d0d-8187-f298c5c6afb8
+		summarizeBy: none
+		sourceColumn: cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Cliente = m
+		mode: import
+		source =
+				let
+				    Origen = Value.NativeQuery(GoogleBigQuery.Database([BillingProject="intub-490114"]){[Name="intub-490114"]}[Data], "SELECT DISTINCT p.cliente#(lf)FROM `intub-490114`.ReporteApis.st_reporte_faena_camion p", null, [EnableFolding=true])
+				in
+				    Origen
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

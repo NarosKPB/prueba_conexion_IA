@@ -1,0 +1,49 @@
+table 'Zzz.Métrica Cliente'
+	lineageTag: 0d2735ea-97f5-4b6f-94d8-a8920c2aa86d
+
+	column 'Zzz.Métrica Cliente'
+		lineageTag: 10ebe3f3-75d2-4b34-ac45-8ec9965fec66
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Zzz.Métrica Cliente Orden'
+
+		relatedColumnDetails
+			groupByColumn: 'Zzz.Métrica Cliente Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Zzz.Métrica Cliente Campos'
+		isHidden
+		lineageTag: 66568761-87f2-4faf-933c-6da64ae6e489
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Zzz.Métrica Cliente Orden'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Zzz.Métrica Cliente Orden'
+		isHidden
+		formatString: 0
+		lineageTag: bd329770-5777-42e0-88f8-42201b67d2ab
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Zzz.Métrica Cliente' = calculated
+		mode: import
+		source =
+				{
+				    ("Faenas", NAMEOF('Medidas'[Cantidad de Reportes de Faenas]), 0),
+				    ("Tiempo Prom.", NAMEOF('Medidas'[Tiempo Promedio Min]), 1),
+				    ("Tiempo Total", NAMEOF('Medidas'[Tiempo Total Min]), 2)
+				}
+
+	annotation PBI_Id = ae8ad117ad7842faac701b352ec11b02
+

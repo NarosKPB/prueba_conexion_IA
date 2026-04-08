@@ -1,0 +1,23 @@
+table Dim_Personal
+	lineageTag: 73d18f1e-66d6-4a92-b3d9-0559587a9b23
+
+	column equipo_persona
+		dataType: string
+		lineageTag: b989aaa5-2ba8-43e4-8452-e1ed9a49606c
+		summarizeBy: none
+		sourceColumn: equipo_persona
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Personal = m
+		mode: import
+		source =
+				let
+				    Origen = Value.NativeQuery(GoogleBigQuery.Database([BillingProject="intub-490114"]){[Name="intub-490114"]}[Data], "SELECT DISTINCT p.equipo_persona  #(lf)FROM `intub-490114`.ReporteApis.st_reporte_faena_camion p#(lf)WHERE p.equipo_persona IS NOT NULL", null, [EnableFolding=true])
+				in
+				    Origen
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,41 @@
+relationship 5b3ae1e5-77a9-4114-acb7-12d21b5d05af
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_Tiempo.Fecha
+	toColumn: LocalDateTable_39d0ef50-aca7-4484-9923-d986a1992c82.Date
+
+relationship 83a9d2b8-1989-97fd-fd86-489fec36aa35
+	fromColumn: Planificación.Dia
+	toColumn: Dim_Tiempo.Fecha
+
+relationship 5f184eff-4c27-9599-8fc9-795793127829
+	fromColumn: Reporte_Faenas.hora_creacion
+	toColumn: Dim_Hora.Hora
+
+relationship AutoDetected_1c5d109d-9ccc-4f08-aa4a-ca6f3809e34c
+	fromColumn: Reporte_Faenas.patente
+	toColumn: Dim_Camion.patente
+
+relationship AutoDetected_cd558239-b380-4c61-873e-27406e732126
+	fromColumn: Planificación.Patente
+	toColumn: Dim_Camion.patente
+
+relationship AutoDetected_24fb219f-fbc2-4069-8a8a-08659fc700b9
+	fromColumn: Reporte_Faenas.cliente
+	toColumn: Dim_Cliente.cliente
+
+relationship AutoDetected_8959c5ea-3cf7-4f46-ae82-38af54b5ef7a
+	fromColumn: Planificación.Cliente
+	toColumn: Dim_Cliente.cliente
+
+relationship AutoDetected_b2e89dd8-821b-44b8-815a-b6a9f10ae87c
+	fromColumn: Reporte_Faenas.equipo_persona
+	toColumn: Dim_Personal.equipo_persona
+
+relationship 1c1d37b0-b3c6-e331-515c-5b486f57b78e
+	fromColumn: Planificación.Personal
+	toColumn: Dim_Personal.equipo_persona
+
+relationship fd64bfa8-3724-682f-ef60-7e2db90508c8
+	fromColumn: Reporte_Faenas.fecha_reporte
+	toColumn: Dim_Tiempo.Fecha
+

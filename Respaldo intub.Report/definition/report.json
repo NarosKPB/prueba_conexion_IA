@@ -1,0 +1,102 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY26SU02",
+      "reportVersionAtImport": {
+        "visual": "2.6.0",
+        "report": "3.1.0",
+        "page": "2.3.0"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "htmlContent443BE3AD55E043BF878BED274D3A6855"
+  ],
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY26SU02",
+          "path": "BaseThemes/CY26SU02.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "92f739_7608c4996b7d4f1583092767961233860177135.gif",
+          "path": "92f739_7608c4996b7d4f1583092767961233860177135.gif",
+          "type": "Image"
+        },
+        {
+          "name": "formulario-de-llenado056540244500669745.png",
+          "path": "formulario-de-llenado056540244500669745.png",
+          "type": "Image"
+        },
+        {
+          "name": "formulario-de-llenado47099643819736126.png",
+          "path": "formulario-de-llenado47099643819736126.png",
+          "type": "Image"
+        },
+        {
+          "name": "formulario-de-llenado6335979806715948.png",
+          "path": "formulario-de-llenado6335979806715948.png",
+          "type": "Image"
+        },
+        {
+          "name": "portapapeles1487388885192915.png",
+          "path": "portapapeles1487388885192915.png",
+          "type": "Image"
+        },
+        {
+          "name": "portapapeles2841525732424416.png",
+          "path": "portapapeles2841525732424416.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

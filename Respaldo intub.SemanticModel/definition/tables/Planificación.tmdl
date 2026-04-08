@@ -1,0 +1,80 @@
+table Planificación
+	lineageTag: 1f5609d9-c3d0-4f32-98a5-4938ec96d2d3
+
+	column Dia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 3a4ad6cd-a614-4930-a530-befbca0d9b01
+		summarizeBy: none
+		sourceColumn: Dia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Servicio
+		dataType: string
+		lineageTag: 4602d6ee-ec19-4087-9bf6-9ce2539acd76
+		summarizeBy: none
+		sourceColumn: Servicio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Patente
+		dataType: string
+		lineageTag: c7c44649-adde-4733-9e06-5ee609b10a5e
+		summarizeBy: none
+		sourceColumn: Patente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cargo Personal'
+		dataType: string
+		lineageTag: e3d15ace-223a-4fec-bfba-d562a617ab41
+		summarizeBy: none
+		sourceColumn: Cargo Personal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Personal
+		dataType: string
+		lineageTag: 32b8cf68-6e78-434b-a131-2ab09d69a4e6
+		summarizeBy: none
+		sourceColumn: Personal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		dataType: string
+		lineageTag: b56dc45a-cf6d-40dd-8e08-874fb81eced3
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column pk
+		dataType: string
+		lineageTag: ab32c159-fa92-4b30-a9a6-c3762c501c84
+		summarizeBy: none
+		sourceColumn: pk
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Planificación = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(Web.Contents("https://kpbkeeppushingbusiness.sharepoint.com/Shared%20Documents/BI/Proyectos%20-%20Clientes/Pablo/Proyectos/Intub/Panel%20Tiempo%20Efectivo%20de%20Trabajo/Planificaci%C3%B3n%20Intub.xlsx"), null, true),
+				    Planificación_Sheet = Origen{[Item="Planificación",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Planificación_Sheet, [PromoteAllScalars=true]),
+				    #"Otras columnas quitadas" = Table.SelectColumns(#"Encabezados promovidos",{"Dia", "Servicio", "Patente", "Cargo Personal", "Personal", "Cliente"}),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Otras columnas quitadas",{{"Dia", type date}, {"Servicio", type text}, {"Patente", type text}, {"Cargo Personal", type text}, {"Personal", type text}, {"Cliente", type text}}),
+				    #"Filas filtradas" = Table.SelectRows(#"Tipo cambiado", each ([Dia] <> null and [Dia] <> "") and ([Servicio] = "Faena")),
+				    #"Add CCol: Pk" = Table.AddColumn(#"Filas filtradas", "pk", each Date.ToText([Dia])&"|"&[Patente]&"|"&[Cliente])
+				in
+				    #"Add CCol: Pk"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

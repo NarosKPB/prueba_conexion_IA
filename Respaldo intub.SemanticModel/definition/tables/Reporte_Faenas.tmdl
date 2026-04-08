@@ -1,0 +1,300 @@
+table Reporte_Faenas
+	lineageTag: 7df198d2-4b3a-4b66-b3b3-491018c10de0
+
+	column form_name
+		dataType: string
+		lineageTag: ce4c0bf3-3229-4c4e-b5e3-6b3606cb462f
+		summarizeBy: none
+		sourceColumn: form_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column form_state
+		dataType: string
+		lineageTag: 8a2586d2-f547-4773-977c-84fcfd767c03
+		summarizeBy: none
+		sourceColumn: form_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_name
+		dataType: string
+		lineageTag: 7d0ce79c-5089-45e8-a31f-c1d3c596be1b
+		summarizeBy: none
+		sourceColumn: user_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_identifier
+		dataType: string
+		lineageTag: 20fb1c67-c72d-4af5-80f2-eb6337550a4d
+		summarizeBy: none
+		sourceColumn: user_identifier
+
+		annotation SummarizationSetBy = Automatic
+
+	column code
+		dataType: string
+		lineageTag: 05566287-9875-4b97-83eb-b006524164c6
+		summarizeBy: none
+		sourceColumn: code
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 712f5703-ab8c-43dc-a161-8f44d196a222
+		summarizeBy: none
+		sourceColumn: created_at
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column form_answer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: cc2403bb-4c7b-441a-96c1-329342825f6a
+		summarizeBy: sum
+		sourceColumn: form_answer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Diferencia Horas Inicio - Fin Faena' =
+			
+			var _minutos_totales = Reporte_Faenas[Diferencia Minutos Inicio - Fin Faena]
+			
+			// 3. Extrae las horas y los minutos por separado
+			var _horas = INT(_minutos_totales / 60)
+			var _minutos = MOD(_minutos_totales, 60)
+			
+			// 4. Une todo forzando el formato de dos dígitos (00)
+			return FORMAT(_horas, "00") & ":" & FORMAT(_minutos, "00")
+		lineageTag: 5256a5fc-e6e3-460c-9759-0ce732d20cb1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Diferencia Minutos Inicio - Fin Faena' = ```
+			
+			var _inicio = Reporte_Faenas[hora_llegada_faena]
+			var _fin = Reporte_Faenas[hora_salida_faena]
+			
+			// 1. Calcula la diferencia (fracción de día)
+			// El IF ayuda por si el turno cruza la medianoche (ej: de 22:00 a 02:00)
+			var _diferencia_dias = IF(_fin < _inicio, (_fin + 1) - _inicio, _fin - _inicio)
+			
+			// 2. Convierte esa fracción a minutos totales
+			var _minutos_totales = ROUND(_diferencia_dias * 24 * 60, 0)
+			
+			return _minutos_totales
+			
+			```
+		lineageTag: 621d8b2d-2dfe-456f-a280-997058087f47
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rango Tiempo Faena' =
+			
+			VAR _min = Reporte_Faenas[Diferencia Minutos Inicio - Fin Faena]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(_min), BLANK(),
+			    _min <= 120, "0-2 h",
+			    _min <= 240, "2-4 h",
+			    _min <= 480, "4-8 h",
+			    _min <= 720, "8-12 h",
+			    ">12 h"
+			)
+		lineageTag: 19fa2ba9-95ca-4ea8-aa39-678828ae5bca
+		summarizeBy: none
+		sortByColumn: 'Rango Tiempo Faena Orden'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rango Tiempo Faena Orden' =
+			
+			VAR _min = Reporte_Faenas[Diferencia Minutos Inicio - Fin Faena]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(_min), BLANK(),
+			    _min <= 120, 1,
+			    _min <= 240, 2,
+			    _min <= 480, 3,
+			    _min <= 720, 4,
+			    5
+			)
+		formatString: 0
+		lineageTag: b7b2c283-532e-4146-9d2b-55d739fdf201
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reporte Validado' = ```
+			
+			var _estado = Reporte_Faenas[form_state]
+			return 
+			    SWITCH(TRUE(),
+			    _estado = BLANK(), "No Validado",
+			    _estado = "Aceptado", _estado)
+			```
+		lineageTag: 0eb9d08e-09b5-4cf0-a41e-2eb56c8ef27f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column hora_creacion
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 033aef1f-545e-4fdf-a29f-bfbfa964226e
+		summarizeBy: none
+		sourceColumn: hora_creacion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column fecha_reporte
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 94a37029-4bef-4dd4-b5a8-d38ce4be01dd
+		summarizeBy: none
+		sourceColumn: fecha_reporte
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column patente
+		dataType: string
+		lineageTag: 2b3a07dc-79a2-4dcd-9442-257a4b0bf449
+		summarizeBy: none
+		sourceColumn: patente
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente
+		dataType: string
+		lineageTag: d4c5e163-d160-475c-8844-a417f5ebe45a
+		summarizeBy: none
+		sourceColumn: cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column hora_llegada_faena
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: be5ec04f-18c7-4d38-969f-896e0bd11f34
+		summarizeBy: none
+		sourceColumn: hora_llegada_faena
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column hora_salida_faena
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 72917b44-dce6-45dc-bf8f-1fbab86feb19
+		summarizeBy: none
+		sourceColumn: hora_salida_faena
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column hora_llegada_itv
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 1fde69b1-0110-463f-813c-caa1c2914a62
+		summarizeBy: none
+		sourceColumn: hora_llegada_itv
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column hora_salida_itv
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 4982d386-e5ba-40fd-a967-bb4698c9c24d
+		summarizeBy: none
+		sourceColumn: hora_salida_itv
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column equipo_persona
+		dataType: string
+		lineageTag: b901995d-8ec9-4d96-830e-a96a3b0e4555
+		summarizeBy: none
+		sourceColumn: equipo_persona
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre_mandante
+		dataType: string
+		lineageTag: 04a8db63-efbe-49e3-9c00-c954462a89c1
+		summarizeBy: none
+		sourceColumn: nombre_mandante
+
+		annotation SummarizationSetBy = Automatic
+
+	column rut_mandante
+		dataType: string
+		lineageTag: b91165fa-d354-446c-a007-762003e81e7c
+		summarizeBy: none
+		sourceColumn: rut_mandante
+
+		annotation SummarizationSetBy = Automatic
+
+	column observaciones_generales
+		dataType: string
+		lineageTag: c358759a-764f-4e40-b452-e455f96d09eb
+		summarizeBy: none
+		sourceColumn: observaciones_generales
+
+		annotation SummarizationSetBy = Automatic
+
+	column firma_encargado
+		dataType: string
+		lineageTag: 95ed7a65-e9de-42dd-8e5c-aa6214fdd88e
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: firma_encargado
+
+		annotation SummarizationSetBy = Automatic
+
+	column firma_mandante
+		dataType: string
+		lineageTag: 4c1d2c14-7860-4998-89ae-bf692d00d7b2
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: firma_mandante
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Reporte_Faenas = m
+		mode: import
+		source =
+				let
+				    Origen = Value.NativeQuery(GoogleBigQuery.Database([BillingProject="intub-490114"]){[Name="intub-490114"]}[Data], "SELECT #(lf)form_answer_id, form_name, form_state, user_name, user_identifier, code, created_at, #(lf)fecha_reporte, patente, cliente, hora_llegada_faena, hora_salida_faena, #(lf)hora_llegada_itv, hora_salida_itv, equipo_persona, nombre_mandante, rut_mandante, #(lf)observaciones_generales, firma_encargado, firma_mandante#(lf)FROM `intub-490114`.ReporteApis.st_reporte_faena_camion srfc", null, [EnableFolding=true]),
+				    #"Tipo cambiado1" = Table.TransformColumnTypes(Origen,{{"created_at", type time}}),
+				    #"Personalizada agregada" = Table.AddColumn(#"Tipo cambiado1", "hora_creacion", each #time(Time.Hour([created_at]), Time.Minute([created_at]), 0)),
+				    #"Tipo cambiado2" = Table.TransformColumnTypes(#"Personalizada agregada",{{"hora_creacion", type time}})
+				in
+				    #"Tipo cambiado2"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "3e6d2bc573e7b8a70609",
+  "displayName": "General",
+  "displayOption": "ActualSize",
+  "height": 1350,
+  "width": 1920,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#E8E8E8'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "a512dc491959e1ecae0a",
+      "target": "7aa21e8390d29ac41c74",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a512dc491959e1ecae0a",
+      "target": "13fe5f10a799a1d3a46c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "48fd0f847b01a1e051ae",
+      "target": "13fe5f10a799a1d3a46c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "48fd0f847b01a1e051ae",
+      "target": "7aa21e8390d29ac41c74",
+      "type": "DataFilter"
+    },
+    {
+      "source": "48fd0f847b01a1e051ae",
+      "target": "a512dc491959e1ecae0a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7aa21e8390d29ac41c74",
+      "target": "a512dc491959e1ecae0a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7aa21e8390d29ac41c74",
+      "target": "13fe5f10a799a1d3a46c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "13fe5f10a799a1d3a46c",
+      "target": "a512dc491959e1ecae0a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "13fe5f10a799a1d3a46c",
+      "target": "7aa21e8390d29ac41c74",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6d859ff0677648d179dd",
+      "target": "7aa21e8390d29ac41c74",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6d859ff0677648d179dd",
+      "target": "13fe5f10a799a1d3a46c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6d859ff0677648d179dd",
+      "target": "a512dc491959e1ecae0a",
+      "type": "DataFilter"
+    }
+  ]
+}

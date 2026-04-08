@@ -1,0 +1,23 @@
+table Dim_Camion
+	lineageTag: feb896db-d4d7-41b8-9249-d6ce508843b4
+
+	column patente
+		dataType: string
+		lineageTag: 8d8f54dc-10d8-4eff-bd8f-79d7c15dac93
+		summarizeBy: none
+		sourceColumn: patente
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Camion = m
+		mode: import
+		source =
+				let
+				    Origen = Value.NativeQuery(GoogleBigQuery.Database([BillingProject="intub-490114"]){[Name="intub-490114"]}[Data], "SELECT DISTINCT srfc.patente  #(lf)FROM `intub-490114`.ReporteApis.st_reporte_faena_camion srfc", null, [EnableFolding=true])
+				in
+				    Origen
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

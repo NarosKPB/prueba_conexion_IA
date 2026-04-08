@@ -1,0 +1,28 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-CL
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+
+annotation PBI_QueryOrder = ["Reporte_Faenas","Medidas","Dim_Tiempo","Planificación","Dim_Camion","Dim_Personal","Dim_Cliente","Dim_Hora"]
+
+ref table Reporte_Faenas
+ref table DateTableTemplate_54b73dc5-136b-4da1-b0f8-0fa62bdfdadc
+ref table Medidas
+ref table Dim_Tiempo
+ref table LocalDateTable_39d0ef50-aca7-4484-9923-d986a1992c82
+ref table 'Zzz.Métrica Cliente'
+ref table Planificación
+ref table Dim_Camion
+ref table Dim_Personal
+ref table Dim_Cliente
+ref table Dim_Hora
+
+ref cultureInfo es-ES
+

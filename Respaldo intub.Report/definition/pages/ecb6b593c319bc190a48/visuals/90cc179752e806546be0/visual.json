@@ -1,0 +1,524 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "90cc179752e806546be0",
+  "position": {
+    "x": 48,
+    "y": 836,
+    "z": 22000,
+    "height": 452,
+    "width": 1824,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "Fecha de Reporte"
+                }
+              },
+              "queryRef": "Reporte_Faenas.Fecha de Reporte",
+              "nativeQueryRef": "Fecha de Reporte"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "Cliente"
+                }
+              },
+              "queryRef": "Reporte_Faenas.Cliente",
+              "nativeQueryRef": "Cliente"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "Patente"
+                }
+              },
+              "queryRef": "Reporte_Faenas.Patente",
+              "nativeQueryRef": "Patente"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "Personal"
+                }
+              },
+              "queryRef": "Reporte_Faenas.Personal",
+              "nativeQueryRef": "Personal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "created_at"
+                }
+              },
+              "queryRef": "Reporte_Faenas.created_at",
+              "nativeQueryRef": "created_at"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "form_state"
+                }
+              },
+              "queryRef": "Reporte_Faenas.form_state",
+              "nativeQueryRef": "form_state"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "Hora Llegada Faena"
+                }
+              },
+              "queryRef": "Reporte_Faenas.Hora Llegada Faena",
+              "nativeQueryRef": "Hora Llegada Faena"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "Hora Salida Faena"
+                }
+              },
+              "queryRef": "Reporte_Faenas.Hora Salida Faena",
+              "nativeQueryRef": "Hora Salida Faena"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "Diferencia Horas Inicio - Fin Faena"
+                }
+              },
+              "queryRef": "Reporte_Faenas.Diferencia Horas Inicio - Fin Faena",
+              "nativeQueryRef": "Tiempo Transcurrido",
+              "displayName": "Tiempo Transcurrido"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "Firma Encargado"
+                }
+              },
+              "queryRef": "Reporte_Faenas.Firma Encargado",
+              "nativeQueryRef": "Firma Encargado"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "Nombre Recepción Conforme Mandante"
+                }
+              },
+              "queryRef": "Reporte_Faenas.Nombre Recepción Conforme Mandante",
+              "nativeQueryRef": "Nombre Recepción Conforme Mandante"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "RUT Recepción Conforme Mandante"
+                }
+              },
+              "queryRef": "Reporte_Faenas.RUT Recepción Conforme Mandante",
+              "nativeQueryRef": "RUT Recepción Conforme Mandante"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "Firma Recepción Conforme Mandante"
+                }
+              },
+              "queryRef": "Reporte_Faenas.Firma Recepción Conforme Mandante",
+              "nativeQueryRef": "Firma Recepción Conforme Mandante"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reporte_Faenas"
+                    }
+                  },
+                  "Property": "Otras Observaciones (Generales)"
+                }
+              },
+              "queryRef": "Reporte_Faenas.Otras Observaciones (Generales)",
+              "nativeQueryRef": "Otras Observaciones (Generales)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Reporte_Faenas"
+                  }
+                },
+                "Property": "Fecha de Reporte"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#252424'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2A3948'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "urlIcon": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Reporte_Faenas.Firma Encargado"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1273DE'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arial'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#252423'"
+                    }
+                  }
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "null"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Reporte_Faenas.Fecha de Reporte"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "styleValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "null"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Reporte_Faenas.Firma Encargado"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

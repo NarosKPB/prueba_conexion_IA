@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Respaldo intub"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a5a47f43-712a-48ee-bb1f-f12d8eacdbf3"
+  }
+}

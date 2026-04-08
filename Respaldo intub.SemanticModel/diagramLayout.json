@@ -1,0 +1,140 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 9.157337131480924
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 29,
+            "y": 20.328027512235167
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "9b23d865-0bc9-4fcf-a5a5-a3d6c2a12e79",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 676.70205984977611,
+            "y": 602.8961296745149
+          },
+          "nodeIndex": "Reporte_Faenas",
+          "nodeLineageTag": "7df198d2-4b3a-4b66-b3b3-491018c10de0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 320.32802751223517
+          },
+          "nodeIndex": "Dim_Tiempo",
+          "nodeLineageTag": "2cc3b6ce-189c-41a5-8e1e-6bcc140e740c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1084.8426964834375,
+            "y": 37.012297160578939
+          },
+          "nodeIndex": "Zzz.Métrica Cliente",
+          "nodeLineageTag": "0d2735ea-97f5-4b6f-94d8-a8920c2aa86d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 610.0152225720592,
+            "y": 0.23408253670555723
+          },
+          "nodeIndex": "Planificación",
+          "nodeLineageTag": "1f5609d9-c3d0-4f32-98a5-4938ec96d2d3",
+          "size": {
+            "height": 245.77765296460763,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 873.70705381814423,
+            "y": 399.18517472402266
+          },
+          "nodeIndex": "Dim_Camion",
+          "nodeLineageTag": "feb896db-d4d7-41b8-9249-d6ce508843b4",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1194.8065544213075,
+            "y": 353.5242509047448
+          },
+          "nodeIndex": "Dim_Cliente",
+          "nodeLineageTag": "25a632b8-6600-460c-a9e4-138a3db42426",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 268.79208409685828,
+            "y": 390.62375150790797
+          },
+          "nodeIndex": "Dim_Personal",
+          "nodeLineageTag": "73d18f1e-66d6-4a92-b3d9-0559587a9b23",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 557.88277319114081,
+            "y": 396.75730319221117
+          },
+          "nodeIndex": "Dim_Hora",
+          "nodeLineageTag": "be452976-17dd-4ed5-8d6c-3031241a862b",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 4,
+          "expandedHeight": 224
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 69.889313929107516,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}
